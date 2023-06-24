@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Memory Enhancer</string>
+    <string name="rounds_played">Rounds Played:</string>
+    <string name="rounds_won">Rounds Won:</string>
+    <string name="settings">Settings</string>
+    <string name="stats">Stats</string>
+    <string name="stop_game">Stop</string>
+    <string name="target_tile_color">Target Tile Color:</string>
+    <string name="save">Save</string>
+    <string name="show_answer">Show Answer</string>
+    <string name="text_game_explanation">Welcome to the memory enhancer game! Click on GO TO GAME PAGE
+    to start playing. Click on SHOW TILES, after 3 seconds, various colors will fill the file board.
+    You these color arrangements will stay on the board for a short period of time equal to the value
+    of the current interval, which is set in milliseconds (1000 millisecond = 1 second). A number of these
+    tiles will be the target tile color, green. The number of green tiles is equal to the value of the
+    current number of target tiles. Both the interval and number of target tile values can be changed
+    in SETTINGS. The objective is to click on each tile that shows the target tile color. You
+    have an unlimited amount of time to try to remember where all the green tiles are. However, you have
+    a number of guesses equal to the value of the number of target tiles. So if 4 green tiles showed up on
+    the screen, you have 4 clicks to get the correct positions. You can choose the click SHOW ANSWER to
+    see the answer key, however, it will count as you losing the round if you look at the answer before
+    winning the round. You can click STOP before losing the round to stop the game and not store the
+    outcome of this round in the stats.</string>
+    <string name="game_help">Game Help</string>
+    <string name="welcome_msg">Welcome to Memory Enhancer! This app can help enhance your memory by playing
+    a game where the objective is to remember the locations of a specific tile color(s) on the tile board.
+    Click on the settings icon in the app menu bar to adjust the difficulty settings.</string>
+    <string name="game_screen">Game Screen</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="play_game">Play Game</string>
+    <string name="play">Play</string>
+    <string name="current_number_of_target_tiles">Number of Target Tiles:</string>
+    <string name="current_interval_milliseconds">Interval (Milliseconds):</string>
+    <string name="current_number_of_target_tile_colors">Number of Target Tile Colors:</string>
+    <string name="number_of_target_tile_colors">Target Tile Colors:</string>
+    <string name="number_of_target_tiles">Number of Target Tiles:</string>
+    <string name="interval">Interval:</string>
+    <string name="colors_of_target_tile">Colors of Target Tile(s):</string>
+
+    <string-array name="num_target_tiles">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="interval_time">
+        <item>5 Seconds</item>
+        <item>4 Seconds</item>
+        <item>3 Seconds</item>
+        <item>2 Seconds</item>
+        <item>1 Second</item>
+        <item>0.75 Seconds</item>
+        <item>0.50 Seconds</item>
+        <item>0.25 Seconds</item>
+        <item>0.10 Seconds</item>
+    </string-array>
+</resources>
