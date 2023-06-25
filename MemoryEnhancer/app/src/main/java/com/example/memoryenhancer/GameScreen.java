@@ -133,14 +133,14 @@ public class GameScreen extends AppCompatActivity {
     public void setBtnColor(View view) {
         Button button;
         button = (Button) findViewById(view.getId());
-        button.setBackgroundColor(ContextCompat.getColor(this, R.color.target_tile));
+        button.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
     }
 
     // Listen for clicks
     public void onClick(View view) {
         if (canTouch) {
             // Each time a button is clicked for this switch, tileClick is ran and the tile clicked
-            // will turn green to show which buttons have been clicked.
+            // will turn black to show which buttons have been clicked.
             switch (view.getId()) {
                 case R.id.btn_0:
                     tileClick(0);
@@ -354,9 +354,8 @@ public class GameScreen extends AppCompatActivity {
         // Switch the positions of the target tile colors so that they're in front of the
         // colorsArray in the game object. That way, when generating random values for tile colors, we
         // can skip the target tile colors, since we know they're in the front of the array.
-        for (int x = 0; x < MainActivity.game.getTargetTilesColors().size(); ++x) {
-            colorSwap(MainActivity.game.getColorsArray().get(x), x);
-        }
+        for (int x = 0; x < MainActivity.game.getTargetTilesColors().size(); ++x)
+            colorSwap(MainActivity.game.getTargetTilesColors().get(x), x);
 
         // Fill tileColors array with random colors, but skip the values that are target tile colors.
         for (int x = 0; x < 20; ++x)

@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class Settings extends AppCompatActivity {
     private Spinner targetTile, interval;
-    private TextView curTargetTiles, curInterval, curTargetTileColors;
+    private static TextView curTargetTiles, curInterval, curTargetTileColors;
 
     private static Button targetTileColor1, targetTileColor2, targetTileColor3;
     protected static int numOfTiles;
@@ -35,6 +35,7 @@ public class Settings extends AppCompatActivity {
         actionBar.setTitle("Settings");
 
         init();
+
     }
 
     // Inflates the options menu when the user opens the menu
@@ -85,6 +86,8 @@ public class Settings extends AppCompatActivity {
 
         fillTargetTileColorButtons();
 
+        hideTargetTileColors();
+
         // Initialize the spinners
         numOfTiles = MainActivity.game.getNumOfTiles();
         intervalTime = MainActivity.game.getInterval();
@@ -101,6 +104,45 @@ public class Settings extends AppCompatActivity {
         intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         interval.setAdapter(intervalAdapter);
         interval.setOnItemSelectedListener(new IntervalSpinnerSelection());
+    }
+
+    public static void updateText() {
+        curTargetTiles.setText(String.valueOf(MainActivity.game.getNumOfTiles()));
+        curInterval.setText(String.valueOf(MainActivity.game.getInterval()));
+        curTargetTileColors.setText(String.valueOf(MainActivity.game.getTargetTilesColors().size()));
+    }
+
+    public static void hideTargetTileColors() {
+        if (MainActivity.game.getTargetTilesColors().size() == 1) {
+            // Hide button 3
+            targetTileColor3.setVisibility(View.GONE);
+
+            // Enable button 1
+            targetTileColor1.setEnabled(true);
+        }
+        else if (MainActivity.game.getTargetTilesColors().size() == 2) {
+            // Show button 3
+            targetTileColor3.setVisibility(View.VISIBLE);
+
+            // Enable button 2
+            targetTileColor2.setEnabled(true);
+
+            // Disable button 1 if second target tile color isn't none
+            if (MainActivity.game.getTargetTilesColors().get(1) != -1)
+                targetTileColor1.setEnabled(false);
+        }
+        else if (MainActivity.game.getTargetTilesColors().size() == 3) {
+            // Disable buttons 1 and 2 if third target tile color isn't none
+            if (MainActivity.game.getTargetTilesColors().get(2) != -1) {
+                targetTileColor1.setEnabled(false);
+                targetTileColor2.setEnabled(false);
+            }
+            // Otherwise, enable only button 2.
+            else {
+                targetTileColor1.setEnabled(false);
+                targetTileColor2.setEnabled(true);
+            }
+        }
     }
 
     // Populates the targetTileColor buttons
@@ -149,5 +191,6 @@ public class Settings extends AppCompatActivity {
             default:
                 break;
         }
+        //hideTargetTileColors();
     }
 }

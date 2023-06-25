@@ -1,26 +1,18 @@
 package com.example.memoryenhancer;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class ColorAdapter extends RecyclerView.Adapter<ColorViewHolder> {
-    private Context context;
-    private List<ColorItem> color_items;
+    private final Context context;
+    private final List<ColorItem> color_items;
 
-    private View.OnClickListener onClickListener;
     public ColorAdapter(Context context, List<ColorItem> color_items) {
         this.context = context;
         this.color_items = color_items;
@@ -147,26 +139,69 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorViewHolder> {
             public void onClick(View view) {
                 switch (ColorPicker.button_number) {
                     case "1":
-                        MainActivity.game.getTargetTilesColors().set(0, colors[holder.getAdapterPosition()]);
+                        if (MainActivity.game.getTargetTilesColors().size() == 1) {
+                            MainActivity.game.getTargetTilesColors().set(0, colors[holder.getAdapterPosition()]);
+                        }
+                        else if (MainActivity.game.getTargetTilesColors().size() > 1) {
+                            while (MainActivity.game.getTargetTilesColors().size() > 1) {
+                                MainActivity.game.getTargetTilesColors().remove(MainActivity.game.getTargetTilesColors().size() - 1);
+                            }
+                        }
+
+                        // Populate targetTileColor buttons with the appropriate user selected color
+                        Settings.fillTargetTileColorButtons();
+                        System.out.println(MainActivity.game.getTargetTilesColors().get(0));
+                        // If none color was chosen remove color from targetTilesColors
+                        if (holder.getAdapterPosition() == 24)
+                            MainActivity.game.getTargetTilesColors().remove(0);
+
                         break;
                     case "2":
                         if (MainActivity.game.getTargetTilesColors().size() < 2)
                             MainActivity.game.getTargetTilesColors().add(colors[holder.getAdapterPosition()]);
+                        else if (MainActivity.game.getTargetTilesColors().size() > 2) {
+                            while (MainActivity.game.getTargetTilesColors().size() > 2) {
+                                MainActivity.game.getTargetTilesColors().remove(MainActivity.game.getTargetTilesColors().size() - 1);
+                            }
+                        }
                         else
                             MainActivity.game.getTargetTilesColors().set(1, colors[holder.getAdapterPosition()]);
+
+                        // Populate targetTileColor buttons with the appropriate user selected color
+                        Settings.fillTargetTileColorButtons();
+                        System.out.println(MainActivity.game.getTargetTilesColors().get(1));
+                        // If none color was chosen remove color from targetTilesColors
+                        if (holder.getAdapterPosition() == 24)
+                            MainActivity.game.getTargetTilesColors().remove(1);
+
                         break;
                     case "3":
                         if (MainActivity.game.getTargetTilesColors().size() < 3)
                             MainActivity.game.getTargetTilesColors().add(colors[holder.getAdapterPosition()]);
+                        else if (MainActivity.game.getTargetTilesColors().size() > 3) {
+                            while (MainActivity.game.getTargetTilesColors().size() > 3) {
+                                MainActivity.game.getTargetTilesColors().remove(MainActivity.game.getTargetTilesColors().size() - 1);
+                            }
+                        }
                         else
                             MainActivity.game.getTargetTilesColors().set(2, colors[holder.getAdapterPosition()]);
+
+                        // Populate targetTileColor buttons with the appropriate user selected color
+                        Settings.fillTargetTileColorButtons();
+                        System.out.println(MainActivity.game.getTargetTilesColors().get(2));
+                        // If none color was chosen remove color from targetTilesColors
+                        if (holder.getAdapterPosition() == 24)
+                            MainActivity.game.getTargetTilesColors().remove(2);
+
                         break;
                     default:
                         // Do nothing
                 }
 
-                // Populate targetTileColor buttons with the appropriate user selected color
-                Settings.fillTargetTileColorButtons();
+                // Update text in Settings activity
+                Settings.updateText();
+
+                Settings.hideTargetTileColors();
             }
         });
     }
