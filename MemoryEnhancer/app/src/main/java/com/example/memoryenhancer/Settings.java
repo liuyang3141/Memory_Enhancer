@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 public class Settings extends AppCompatActivity {
     private Spinner targetTile, interval;
     private static TextView curTargetTiles, curInterval, curTargetTileColors;
@@ -35,7 +37,15 @@ public class Settings extends AppCompatActivity {
         actionBar.setTitle("Settings");
 
         init();
+    }
 
+    // Save current settings
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String json = MainActivity.gson.toJson(MainActivity.game);
+        MainActivity.prefsEditor.putString(MainActivity.GAME_KEY, json);
+        MainActivity.prefsEditor.apply();
     }
 
     // Inflates the options menu when the user opens the menu
@@ -191,6 +201,5 @@ public class Settings extends AppCompatActivity {
             default:
                 break;
         }
-        //hideTargetTileColors();
     }
 }

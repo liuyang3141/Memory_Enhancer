@@ -8,16 +8,32 @@
 
 
     <Button
-        android:id="@+id/btn_target_tile"
+        android:id="@+id/btn_target_tile_color1"
         style="@style/AppTheme.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
-        android:background="@color/target_tile"
-        android:onClick="onClick"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_target_tile_color" />
+
+    <Button
+        android:id="@+id/btn_target_tile_color2"
+        style="@style/AppTheme.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_target_tile_color1"
+        app:layout_constraintTop_toTopOf="@+id/btn_target_tile_color1" />
+
+    <Button
+        android:id="@+id/btn_target_tile_color3"
+        style="@style/AppTheme.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_target_tile_color2"
+        app:layout_constraintTop_toTopOf="@+id/btn_target_tile_color1" />
 
     <Button
         android:id="@+id/btn_0"
@@ -29,7 +45,7 @@
         android:background="@color/default_background"
         android:onClick="onClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile_color1" />
 
     <Button
         android:id="@+id/btn_1"
@@ -41,7 +57,7 @@
         android:background="@color/default_background"
         android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/btn_0"
-        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile_color1" />
 
     <Button
         android:id="@+id/btn_2"
@@ -53,7 +69,7 @@
         android:background="@color/default_background"
         android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/btn_1"
-        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile_color1" />
 
     <Button
         android:id="@+id/btn_3"
@@ -65,7 +81,7 @@
         android:background="@color/default_background"
         android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/btn_2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_target_tile_color1" />
 
     <Button
         android:id="@+id/btn_4"
@@ -317,7 +333,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="# of Guesses Left:"
+        android:text="@string/num_of_guesses_left"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -340,7 +356,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Round Status:"
+        android:text="@string/round_status"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

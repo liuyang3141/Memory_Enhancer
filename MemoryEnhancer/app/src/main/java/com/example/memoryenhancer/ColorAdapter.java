@@ -150,7 +150,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorViewHolder> {
 
                         // Populate targetTileColor buttons with the appropriate user selected color
                         Settings.fillTargetTileColorButtons();
-                        System.out.println(MainActivity.game.getTargetTilesColors().get(0));
+
                         // If none color was chosen remove color from targetTilesColors
                         if (holder.getAdapterPosition() == 24)
                             MainActivity.game.getTargetTilesColors().remove(0);
@@ -169,7 +169,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorViewHolder> {
 
                         // Populate targetTileColor buttons with the appropriate user selected color
                         Settings.fillTargetTileColorButtons();
-                        System.out.println(MainActivity.game.getTargetTilesColors().get(1));
+
                         // If none color was chosen remove color from targetTilesColors
                         if (holder.getAdapterPosition() == 24)
                             MainActivity.game.getTargetTilesColors().remove(1);
@@ -188,7 +188,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorViewHolder> {
 
                         // Populate targetTileColor buttons with the appropriate user selected color
                         Settings.fillTargetTileColorButtons();
-                        System.out.println(MainActivity.game.getTargetTilesColors().get(2));
+
                         // If none color was chosen remove color from targetTilesColors
                         if (holder.getAdapterPosition() == 24)
                             MainActivity.game.getTargetTilesColors().remove(2);

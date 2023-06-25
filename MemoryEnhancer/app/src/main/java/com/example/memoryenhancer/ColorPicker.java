@@ -27,6 +27,12 @@ public class ColorPicker extends AppCompatActivity {
         button_number = intent.getStringExtra("Message");
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
     public void init() {
         List<ColorItem> color_items = new ArrayList<ColorItem>();
         color_items.add(new ColorItem("Green"));

@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.google.gson.Gson;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
@@ -43,6 +46,9 @@ public class GameScreen extends AppCompatActivity {
 
     // For showing the value to # of Guesses Left: in the UI.
     private TextView num_of_guesses_left_answer;
+
+    // For showing the three target tile colors in GameScreen activity
+    protected Button targetTileColor1, targetTileColor2, targetTileColor3;
 
     // For showing the value of Round Status: in the UI.
     private TextView round_status_answer;
@@ -110,14 +116,6 @@ public class GameScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        String json = MainActivity.gson.toJson(MainActivity.game);
-        MainActivity.prefsEditor.putString(MainActivity.GAME_KEY, json);
-        MainActivity.prefsEditor.apply();
-    }
-
     // Initialize variables during onCreate()
     public void init() {
         // Initialize random number generator
@@ -128,8 +126,40 @@ public class GameScreen extends AppCompatActivity {
 
         // Initialize animation
         zoomIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
+
+        // Initializing target tile color buttons in Settings
+        targetTileColor1 = (Button) findViewById(R.id.btn_target_tile_color1);
+        targetTileColor2 = (Button) findViewById(R.id.btn_target_tile_color2);
+        targetTileColor3 = (Button) findViewById(R.id.btn_target_tile_color3);
+
+        updateTargetTileColor();
     }
 
+    public void updateTargetTileColor() {
+        System.out.println("updateTargetTileColor() ran.");
+        System.out.println("Number of target tile colors: " + MainActivity.game.getTargetTilesColors().size());
+        for (int x = 0; x < MainActivity.game.getTargetTilesColors().size(); ++x) {
+            if (x == 0)
+                targetTileColor1.setBackgroundColor(MainActivity.game.getTargetTilesColors().get(x));
+            if (x == 1)
+                targetTileColor2.setBackgroundColor(MainActivity.game.getTargetTilesColors().get(x));
+            if (x == 2)
+                targetTileColor3.setBackgroundColor(MainActivity.game.getTargetTilesColors().get(x));
+        }
+
+        if (MainActivity.game.getTargetTilesColors().size() == 1) {
+            targetTileColor2.setVisibility(View.GONE);
+            targetTileColor3.setVisibility(View.GONE);
+        }
+        else if (MainActivity.game.getTargetTilesColors().size() == 2) {
+            targetTileColor2.setVisibility(View.VISIBLE);
+            targetTileColor3.setVisibility(View.GONE);
+        }
+        else {
+            targetTileColor2.setVisibility(View.VISIBLE);
+            targetTileColor3.setVisibility(View.VISIBLE);
+        }
+    }
     public void setBtnColor(View view) {
         Button button;
         button = (Button) findViewById(view.getId());

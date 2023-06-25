@@ -36,6 +36,8 @@
     <string name="number_of_target_tiles">Number of Target Tiles:</string>
     <string name="interval">Interval:</string>
     <string name="colors_of_target_tile">Colors of Target Tile(s):</string>
+    <string name="num_of_guesses_left"># of Guesses Left:</string>
+    <string name="round_status">Round Status:</string>
 
     <string-array name="num_target_tiles">
         <item>1</item>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.gson.Gson;
 
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Memory Enhancer");
 
         initGame();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String json = MainActivity.gson.toJson(MainActivity.game);
+        MainActivity.prefsEditor.putString(MainActivity.GAME_KEY, json);
+        MainActivity.prefsEditor.apply();
     }
 
     // Inflates the options menu when the user opens the menu
@@ -72,26 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void initGame() {
         game = new MemoryEnhancer(this);
-        /*
-        // Fill colors with the colors listed in colors.xml in values folder
-        int colors[] = getResources().getIntArray(R.array.colors_array);
-
-        // Creating temp arrays to hold values to pass to MemoryEnhancer constructor
-        ArrayList<Integer> tmpColorsArray = new ArrayList<Integer>();
-        ArrayList<Integer> tmpTargetTilesColors = new ArrayList<Integer>();
-
-        // Add default color of target tile to the array
-        tmpTargetTilesColors.add(colors[0]);
-
-        // Fill temp array with all possible colors for tiles
-        for (int x = 0; x < colors.length; ++x) {
-            tmpColorsArray.add(colors[x]);
-        }
-
-        // Initialize default values. Default values are 2 target tiles, 3 second interval.
-        GameStats defaultStats = new GameStats();
-        game = new MemoryEnhancer(2, 3000, tmpColorsArray, tmpTargetTilesColors, defaultStats);
-        */
 
         // Load shared preferences.
         prefs = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
